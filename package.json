@@ -1,0 +1,27 @@
+{
+  "name": "next-auth-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "slate": "^0.82.0"
+  },
+  "devDependencies": {
+    "@types/escape-html": "^1.0.2",
+    "@types/node": "18.7.6",
+    "@types/react": "18.0.17",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5",
+    "typescript": "4.7.4"
+  }
+}
