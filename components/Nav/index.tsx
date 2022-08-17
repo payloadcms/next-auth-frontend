@@ -9,18 +9,14 @@ export const Nav: React.FC = () => {
     <nav>
       {user && (
         <Link href="/account">
-          <a>
-            Account
-          </a>
+          <a>Account</a>
         </Link>
       )}
       {!user && (
         <Link href="/login">
-          <a>
-            Login
-          </a>
+          <a>Login</a>
         </Link>
       )}
     </nav>
-  )
-}
+  );
+};
