@@ -21,6 +21,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const res = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/login`, {
       method: 'POST',
       body: JSON.stringify(args),
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -35,13 +36,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const logout = useCallback<Logout>(async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/logout`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/logout`, {
       method: 'POST',
       // Make sure to include cookies with fetch
       credentials: 'include',
-    }).then((req) => req.json());
+    });
 
-    setUser(null);
+    if (res.ok) {
+      setUser(null);
+    } else {
+      throw new Error('There was a problem while logging out.');
+    }
+
   }, []);
 
   // On mount, get user and set
@@ -52,7 +58,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         credentials: 'include',
       }).then((req) => req.json());
       setUser(result.user || null);
-      console.log('running once');
     };
 
     fetchMe();
