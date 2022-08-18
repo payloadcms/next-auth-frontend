@@ -68,6 +68,12 @@ const Account: React.FC = () => {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    if (typeof router.query.success === 'string') {
+      setSuccess(router.query.success);
+    }
+  }, [router]);
+
   return (
     <React.Fragment>
       <h1>Account</h1>
