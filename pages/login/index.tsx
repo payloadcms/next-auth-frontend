@@ -30,7 +30,6 @@ const Login: React.FC = () => {
     if (router.query.unauthorized) {
       setError(`To visit the ${router.query.unauthorized} page, you need to be logged in.`)
     }
-    console.log(router);
   }, [router]);
 
   return (

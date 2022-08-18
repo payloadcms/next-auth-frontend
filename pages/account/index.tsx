@@ -20,29 +20,31 @@ const Account: React.FC = () => {
   const router = useRouter();
 
   const onSubmit = useCallback(async (data: FormData) => {
-    try {
-      if (user) {
-        const result = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/${user.id}`, {
-          // Make sure to include cookies with fetch
-          credentials: 'include',
-          method: 'PATCH',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }).then(res => res.json());
+    if (user) {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/${user.id}`, {
+        // Make sure to include cookies with fetch
+        credentials: 'include',
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (response.ok) {
+        const json = await response.json();
 
         // Update the user in auth state with new values
-        setUser(result.doc);
+        setUser(json.doc);
 
         // Set success message for user
         setSuccess('Successfully updated account.');
 
         // Clear any existing errors
         setError('')
+      } else {
+        setError('There was a problem updating your account.');
       }
-    } catch (_) {
-      setError('There was a problem updating your account.');
     }
   }, [user]);
 
