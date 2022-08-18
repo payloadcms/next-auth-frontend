@@ -1,4 +1,4 @@
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { AuthProvider } from '../components/Auth';
@@ -22,6 +22,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </div>
         <Component {...pageProps} />
       </div>
-    </AuthProvider >
-  )
+    </AuthProvider>
+  );
 }

@@ -1,18 +1,16 @@
-import React, {
-  useState, createContext, useContext, useEffect, useCallback,
-} from 'react';
+import React, { useState, createContext, useContext, useEffect, useCallback } from 'react';
 import { User } from '../../payload-types';
 
-type Login = (args: { email: string, password: string }) => Promise<void>
+type Login = (args: { email: string; password: string }) => Promise<void>;
 
-type Logout = () => Promise<void>
+type Logout = () => Promise<void>;
 
 type AuthContext = {
-  user?: User | null
-  setUser: (user: User | null) => void
-  logout: Logout
-  login: Login
-}
+  user?: User | null;
+  setUser: (user: User | null) => void;
+  logout: Logout;
+  login: Login;
+};
 
 const Context = createContext({} as AuthContext);
 
@@ -25,7 +23,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       body: JSON.stringify(args),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     });
 
     if (res.ok) {
@@ -41,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       method: 'POST',
       // Make sure to include cookies with fetch
       credentials: 'include',
-    }).then(req => req.json());
+    }).then((req) => req.json());
 
     setUser(null);
   }, []);
@@ -52,21 +50,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const result = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/users/me`, {
         // Make sure to include cookies with fetch
         credentials: 'include',
-      }).then(req => req.json());
+      }).then((req) => req.json());
       setUser(result.user || null);
-      console.log('running once')
+      console.log('running once');
     };
 
     fetchMe();
   }, []);
 
   return (
-    <Context.Provider value={{
-      user,
-      setUser,
-      login,
-      logout,
-    }}
+    <Context.Provider
+      value={{
+        user,
+        setUser,
+        login,
+        logout,
+      }}
     >
       {children}
     </Context.Provider>

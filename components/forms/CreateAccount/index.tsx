@@ -7,30 +7,11 @@ import Form from '../Form';
 
 const CreateAccountForm: React.FC = () => (
   <Form>
-    <Input
-      label="First Name"
-      path="firstName"
-      required
-    />
-    <Input
-      label="Last Name"
-      path="lastName"
-      required
-    />
-    <Input
-      label="Email Address"
-      path="email"
-      validate={validateEmail}
-      required
-    />
-    <Password
-      label="Password"
-      path="password"
-      required
-    />
-    <ConfirmPassword
-      label="Confirm Password"
-    />
+    <Input label="First Name" path="firstName" required />
+    <Input label="Last Name" path="lastName" required />
+    <Input label="Email Address" path="email" validate={validateEmail} required />
+    <Password label="Password" path="password" required />
+    <ConfirmPassword label="Confirm Password" />
   </Form>
 );
 

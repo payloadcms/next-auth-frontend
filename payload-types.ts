@@ -5,7 +5,7 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-export interface Config { }
+export interface Config {}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".

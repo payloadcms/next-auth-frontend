@@ -1,22 +1,27 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useAuth } from '../../components/Auth';
 import classes from './index.module.css';
 import { Input } from '../../components/Input';
 import { useRouter } from 'next/router';
 
 type FormData = {
-  email: string
-  firstName: string
-  lastName: string
-}
+  email: string;
+  firstName: string;
+  lastName: string;
+};
 
 const Account: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const { user, setUser } = useAuth();
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>();
   const router = useRouter();
 
   const onSubmit = useCallback(async (data: FormData) => {
@@ -59,40 +64,26 @@ const Account: React.FC = () => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-      })
+      });
     }
   }, [user, router]);
 
   return (
     <React.Fragment>
       <h1>Account</h1>
-      {error && (
-        <div className={classes.error}>
-          {error}
-        </div>
-      )}
-      {success && (
-        <div className={classes.success}>
-          {success}
-        </div>
-      )}
+      {error && <div className={classes.error}>{error}</div>}
+      {success && <div className={classes.success}>{success}</div>}
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
         <Input name="email" label="Email Address" required register={register} error={errors.email} />
         <Input name="firstName" label="First Name" required register={register} error={errors.firstName} />
         <Input name="lastName" label="Last Name" required register={register} error={errors.lastName} />
-        <button type="submit">
-          Update account
-        </button>
+        <button type="submit">Update account</button>
       </form>
-      <Link
-        href="/logout"
-      >
-        <a>
-          Log out
-        </a>
+      <Link href="/logout">
+        <a>Log out</a>
       </Link>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default Account;
