@@ -51,7 +51,7 @@ const Account: React.FC = () => {
         setError('There was a problem updating your account.');
       }
     }
-  }, [user]);
+  }, [user, setUser]);
 
   useEffect(() => {
     if (user === null) {
@@ -66,7 +66,7 @@ const Account: React.FC = () => {
         lastName: user.lastName,
       });
     }
-  }, [user, router]);
+  }, [user, router, reset]);
 
   useEffect(() => {
     if (typeof router.query.success === 'string') {

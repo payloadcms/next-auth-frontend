@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { AuthProvider } from '../components/Auth';
 import { Logo } from '../components/Logo';
 import { Nav } from '../components/Nav';
