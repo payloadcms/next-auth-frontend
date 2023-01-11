@@ -39,7 +39,7 @@ const CreateAccount: React.FC = () => {
     } else {
       setError('There was a problem creating your account. Please try again later.');
     }
-  }, []);
+  }, [login]);
 
   return (
     <React.Fragment>

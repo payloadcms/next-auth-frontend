@@ -39,7 +39,7 @@ const ResetPassword: React.FC = () => {
     } else {
       setError('There was a problem while resetting your password. Please try again later.');
     }
-  }, [router]);
+  }, [router, login]);
 
   // when NextJS populates token within router,
   // reset form with new token value
