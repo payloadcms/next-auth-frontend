@@ -1,0 +1,1 @@
+> **NOTICE!** This repo has moved to the official Payload [examples directory](https://github.com/payloadcms/payload/tree/master/examples/auth/nextjs). Please refer to that repo for all the latest updates.
